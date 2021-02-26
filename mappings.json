@@ -1,0 +1,26 @@
+{
+  "mcp_version": "faegrweh",
+  "yarn_version": "ophpoisjhrt",
+  "mappings": [
+    {
+      "type": "class",
+      "forge": "ResourceLocation",
+      "fabric": "Identifier"
+    },
+    {
+      "type": "class",
+      "forge": "NoFeatureConfig",
+      "fabric": "DefaultFeatureConfig"
+    },
+    {
+      "type": "method",
+      "forge": "fromAngle",
+      "fabric": "fromRotation"
+    },
+    {
+      "type": "method",
+      "forge": "shouldExecute",
+      "fabric": "shouldRun"
+    }
+  ]
+}

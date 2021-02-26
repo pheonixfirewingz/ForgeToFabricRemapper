@@ -29,7 +29,7 @@ public class JsonData
 		Mapping mapping = null;
 		try
 		{
-			mapping = gson.fromJson(new JsonReader(FIleHandler.getReader(false,path)), Mapping.class);
+			mapping = gson.fromJson(new JsonReader(FIleHandler.getReader(isLocal, path)), Mapping.class);
 		}
 		catch(Exception exception)
 		{

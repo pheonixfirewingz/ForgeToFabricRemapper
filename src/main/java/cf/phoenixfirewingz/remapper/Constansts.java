@@ -13,7 +13,7 @@ public class Constansts
 
 	public Constansts(String path)
 	{
-		Mapping mapping = JsonData.readJsonMap(false,path);
+		Mapping mapping = JsonData.readJsonMap(true,path);
 		for(MapEntry entry:mapping.getMappings())
 		{
 			if(entry.getType().equals("class"))

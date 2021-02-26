@@ -17,7 +17,7 @@ public class ReMapper
 				if(checkImport(s.split("#")[1]))
 					ret_string.append(s.replace('#', ' ')).append("\n");
 			}
-			else if(s.replace('#',' ').contains("public class") || s.replace('#',' ').contains("public abstract class"))
+			else if(s.replace('#',' ').contains("class"))
 			{
 				if(checkExtORImp(s)) ret_string.append(fixExtOrImp(s)).append("\n");
 			}
@@ -31,11 +31,11 @@ public class ReMapper
 
 	private static String fixOther(String s)
 	{
-		if(s.startsWith("{") || s.startsWith("}")) return s;
+		if(s.contains("{") || s.contains("}")) return s;
 
 		if(s.contains("public") || s.contains("private") || s.contains("protected"))
 		{
-			System.out.println(s);
+//			System.out.println(s);
 			String result = Main.constansts.CheckForClassConstMatchFabricClassIfSoRetIt(s);
 			if(result != null) return result;
 		}
