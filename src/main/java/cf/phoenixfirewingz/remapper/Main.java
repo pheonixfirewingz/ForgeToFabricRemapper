@@ -22,7 +22,6 @@ public class Main
 	{
 		File cacheDir = new File(System.getProperty("user.dir") + "\\resource\\cache");
 		System.out.println("getting lastest ForgeToFabricRemapper mapping....\n");
-		constansts = new Constansts(System.getProperty("user.dir") + "\\mappings.json");
 		try {
 			FileHandler.Mappings srg = FileHandler.readTsrg(
 					new Scanner(FileHandler.download(CSV_MAPPINGS, new File(System.getProperty("user.dir") + "\\resource\\cache"))),
@@ -58,8 +57,14 @@ public class Main
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
+<<<<<<< Updated upstream
 //		System.out.println("start remapping classes.......\n");
 //		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
+=======
+		constansts = new Constansts(System.getProperty("user.dir") + "\\mappings.json");
+		System.out.println("start remapping classes.......\n");
+		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
+>>>>>>> Stashed changes
 	}
 
 	public static void readDir(File in)
