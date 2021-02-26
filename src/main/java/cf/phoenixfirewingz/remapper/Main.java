@@ -4,7 +4,7 @@ import cf.phoenixfirewingz.remapper.common.Config;
 import cf.phoenixfirewingz.remapper.utils.JsonData;
 
 import java.io.File;
-import java.util.Objects;
+import java.util.*;
 
 public class Main
 {

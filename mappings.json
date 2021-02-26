@@ -9,6 +9,11 @@
     },
     {
       "type": "class",
+      "forge": "PacketBuffer",
+      "fabric": "PacketByteBuf"
+    },
+    {
+      "type": "class",
       "forge": "NoFeatureConfig",
       "fabric": "DefaultFeatureConfig"
     },

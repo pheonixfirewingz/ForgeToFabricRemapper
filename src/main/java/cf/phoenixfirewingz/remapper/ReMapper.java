@@ -3,7 +3,7 @@ package cf.phoenixfirewingz.remapper;
 public class ReMapper
 {
 	//fabric
-	public static String maptoFabric(String data)
+	public static String mapFromForge(String data)
 	{
 		StringBuilder ret_string = new StringBuilder();
 		String[] process_string = data.replace(' ','#').split("\n");
@@ -61,8 +61,19 @@ public class ReMapper
 		return s.replace('#',' ');
 	}
 
+	public static String mapToYarn(String data)
+	{
+		return null;
+	}
+
 	//forge
 	public static String maptoForge(String data)
+	{
+		System.out.println("fabric to forge is not implemented yet");
+		return null;
+	}
+
+	public static String mapFromYarn(String data)
 	{
 		System.out.println("fabric to forge is not implemented yet");
 		return null;
@@ -87,4 +98,5 @@ public class ReMapper
 
 		return false;
 	}
+
 }

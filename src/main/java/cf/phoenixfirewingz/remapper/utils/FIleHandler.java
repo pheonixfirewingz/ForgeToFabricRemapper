@@ -2,6 +2,8 @@ package cf.phoenixfirewingz.remapper.utils;
 
 import java.io.*;
 import java.net.*;
+import java.nio.file.Path;
+import java.util.Objects;
 
 public class FIleHandler
 {
@@ -10,6 +12,15 @@ public class FIleHandler
 		BufferedReader in;
 		if(!isLocal) in = new BufferedReader(new InputStreamReader(new URL(path).openStream()));
 		else in = new BufferedReader(new FileReader(path));
+
+		return in;
+	}
+
+	public static File getAsFile(boolean isLocal,String path) throws Exception
+	{
+		File in;
+		if(!isLocal) in = new File(new URL(path).toURI());
+		else in = new File(path);
 
 		return in;
 	}
@@ -24,5 +35,26 @@ public class FIleHandler
 		in.close();
 
 		return data.toString();
+	}
+
+	public static void write(String data,String path)
+	{
+		try
+		{
+			File file = new File(path);
+			if(!file.exists())
+			{
+				if(!file.getParentFile().exists()) file.getParentFile().mkdirs();
+				file.createNewFile();
+			}
+			FileWriter writer = new FileWriter(file);
+			writer.write(Objects.requireNonNull(data));
+			writer.flush();
+			writer.close();
+		}
+		catch(IOException e)
+		{
+			System.err.println("ERROR:" + e.getMessage());
+		}
 	}
 }
