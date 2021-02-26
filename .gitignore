@@ -18,5 +18,4 @@ bin/
 .project
 
 #fabric
-resource/new
-resource/old
+resource/
