@@ -1,13 +1,14 @@
 package cf.phoenixfirewingz.remapper;
 
+import cf.phoenixfirewingz.remapper.common.Mapping;
 import cf.phoenixfirewingz.remapper.utils.*;
 
 import java.util.Vector;
 
 public class Constansts
 {
-	public final Vector<StringTuple> constans_classes;
-	public final Vector<StringTuple> constans_methods;
+	public final Vector<StringTuple> constans_classes = new Vector<>();
+	public final Vector<StringTuple> constans_methods = new Vector<>();
 	/*
 		forge mapping names must go on the left
 		fabric mapping names must go on the right
@@ -15,9 +16,8 @@ public class Constansts
 	 */
 	public Constansts(String path)
 	{
-		VectorTuple<StringTuple> mapping = JsonData.readJsonMap(false,path);
-		constans_classes = mapping.getA();
-		constans_methods = mapping.getB();
+		Mapping mapping = JsonData.readJsonMap(false,path);
+		int i = 0;
 	}
 
 	public  String CheckForClassConstMatchFabricClassIfSoRetIt(String s)

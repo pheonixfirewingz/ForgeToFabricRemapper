@@ -67,7 +67,7 @@ public class ReMapper
 	}
 
 	//shared functions
-	private static final String[] ok_starts = {"java","com.google","org.jetbrains"};
+	private static final String[] ok_starts = {"java","com.google","org.jetbrains",Main.config.getMod_directory()};
 
 	private static boolean checkImport(String s)
 	{

@@ -8,11 +8,9 @@ import java.util.Objects;
 public class Process implements Runnable
 {
 	File file;
-	boolean forge;
 	String path_to_new_source_file;
-	public Process(File file,boolean map_to_fabric)
+	public Process(File file)
 	{
-		forge =! map_to_fabric;
 		this.file = file;
 		path_to_new_source_file = file.toString().replace("old","new");
 	}
@@ -30,7 +28,7 @@ public class Process implements Runnable
 			exception.printStackTrace();
 		}
 
-		if(!forge) remapped_data = ReMapper.maptoFabric(data);
+		if(Main.config.isMap_to_fabric()) remapped_data = ReMapper.maptoFabric(data);
 		else remapped_data = ReMapper.maptoForge(data);
 
 		try

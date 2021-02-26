@@ -1,26 +1,40 @@
 package cf.phoenixfirewingz.remapper.utils;
 
+import cf.phoenixfirewingz.remapper.common.*;
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
 import java.util.Vector;
 
 public class JsonData
 {
 	private static final Gson gson = new Gson();
 
-	public static VectorTuple<StringTuple> readJsonMap(boolean isLocal, String path)
+	public static Config readJsonConfig()
 	{
-		String data = null;
-		Vector<StringTuple> classes = new Vector<>();
-		Vector<StringTuple> methods = new Vector<>();
+		Config config = null;
 		try
 		{
-			data = FIleHandler.read(isLocal,path).replaceAll("\n", "");
+			config = gson.fromJson(new JsonReader(FIleHandler.getReader(true,System.getProperty("user.dir") + "\\Config.json")), Config.class);
 		}
 		catch(Exception exception)
 		{
 			exception.printStackTrace();
 		}
-		VectorTuple<StringTuple> ret = new VectorTuple<>(classes,methods);
-		return ret;
+		return config;
+	}
+
+	public static Mapping readJsonMap(boolean isLocal, String path)
+	{
+		Mapping mapping = null;
+		try
+		{
+			mapping = gson.fromJson(new JsonReader(FIleHandler.getReader(false,path)), Mapping.class);
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		return mapping;
 	}
 }
