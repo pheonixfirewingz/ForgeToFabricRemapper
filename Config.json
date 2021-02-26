@@ -1,4 +1,6 @@
 {
-  "mod_directory": "com.minecraftabnormals.endergetic",
-  "should_map_to_fabric": true
+  "modDirectory": "com.minecraftabnormals.endergetic",
+  "shouldMapToFabric": true,
+  "version": "1.16.5",
+  "yarnVersion": 5
 }

@@ -14,14 +14,14 @@ public class Constansts
 	public Constansts(String path)
 	{
 		Mapping mapping = JsonData.readJsonMap(true,path);
-		for(MapEntry entry:mapping.getMappings())
+		for(MapEntry entry:mapping.mappings)
 		{
-			if(entry.getType().equals("class"))
-				constans_classes.add(new StringTuple(entry.getForge(), entry.getFabric()));
-			else if(entry.getType().equals("import"))
-				constans_imports.add(new StringTuple(entry.getForge(), entry.getFabric()));
+			if(entry.type.equals("class"))
+				constans_classes.add(new StringTuple(entry.forge, entry.fabric));
+			else if(entry.type.equals("import"))
+				constans_imports.add(new StringTuple(entry.forge, entry.fabric));
 			else
-				constans_methods.add(new StringTuple(entry.getForge(), entry.getFabric()));
+				constans_methods.add(new StringTuple(entry.forge, entry.fabric));
 		}
 		int i = 0;
 	}

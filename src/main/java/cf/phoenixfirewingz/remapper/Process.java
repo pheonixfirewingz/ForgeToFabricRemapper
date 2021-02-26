@@ -1,6 +1,6 @@
 package cf.phoenixfirewingz.remapper;
 
-import cf.phoenixfirewingz.remapper.utils.FIleHandler;
+import cf.phoenixfirewingz.remapper.utils.FileHandler;
 
 import java.io.*;
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class Process implements Runnable
 		name = file.getName();
 		try
 		{
-			data_of_file = FIleHandler.read(true,file.toString());
+			data_of_file = FileHandler.read(true,file.toString());
 		}
 		catch(Exception exception)
 		{
@@ -28,7 +28,7 @@ public class Process implements Runnable
 		String intermediary_source = null;
 		try
 		{
-			if(Main.config.shouldMapToFabric())
+			if(Main.config.shouldMapToFabric)
 				intermediary_source = ReMapper.mapFromForge(data_of_file);
 			else
 				intermediary_source = ReMapper.mapFromYarn(data_of_file);
@@ -39,9 +39,9 @@ public class Process implements Runnable
 		}
 
 		String remapped_data;
-		if(Main.config.shouldMapToFabric()) remapped_data = ReMapper.mapToYarn(intermediary_source);
+		if(Main.config.shouldMapToFabric) remapped_data = ReMapper.mapToYarn(intermediary_source);
 		else remapped_data = ReMapper.maptoForge(intermediary_source);
 
-		FIleHandler.write(remapped_data,path_to_new_source_file);
+		FileHandler.write(remapped_data, path_to_new_source_file);
 	}
 }

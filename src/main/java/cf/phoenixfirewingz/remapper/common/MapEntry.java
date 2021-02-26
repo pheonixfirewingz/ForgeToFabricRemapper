@@ -2,9 +2,9 @@ package cf.phoenixfirewingz.remapper.common;
 
 public class MapEntry
 {
-	String type;
-	String forge;
-	String fabric;
+	public String type;
+	public String forge;
+	public String fabric;
 
 	public String getType()
 	{

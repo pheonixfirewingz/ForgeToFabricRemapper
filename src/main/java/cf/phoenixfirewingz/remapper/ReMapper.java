@@ -17,10 +17,10 @@ public class ReMapper
 				if(checkImport(s.split("#")[1]))
 					ret_string.append(s.replace('#', ' ')).append("\n");
 			}
-			else if(s.replace('#',' ').contains("class"))
+			/*else if(s.replace('#',' ').contains("class"))
 			{
 				if(checkExtORImp(s)) ret_string.append(fixExtOrImp(s)).append("\n");
-			}
+			}*/
 			else
 					ret_string.append(fixOther(s.replace('#',' '))).append("\n");
 		}
@@ -80,7 +80,7 @@ public class ReMapper
 	}
 
 	//shared functions
-	private static final String[] ok_starts = {"java","com.google","org.jetbrains",Main.config.getModDirectory()};
+	private static final String[] ok_starts = {"java","com.google","org.jetbrains",Main.config.modDirectory};
 
 	private static boolean checkImport(String s)
 	{
