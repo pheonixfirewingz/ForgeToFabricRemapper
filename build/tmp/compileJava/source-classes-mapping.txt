@@ -1,0 +1,14 @@
+cf/phoenixfirewingz/remapper/ReMapper.java
+ cf.phoenixfirewingz.remapper.ReMapper
+cf/phoenixfirewingz/remapper/StringTuple.java
+ cf.phoenixfirewingz.remapper.StringTuple
+cf/phoenixfirewingz/remapper/Constansts.java
+ cf.phoenixfirewingz.remapper.Constansts
+cf/phoenixfirewingz/remapper/Main.java
+ cf.phoenixfirewingz.remapper.Main
+cf/phoenixfirewingz/remapper/Process.java
+ cf.phoenixfirewingz.remapper.Process
+cf/phoenixfirewingz/remapper/FIleHandler.java
+ cf.phoenixfirewingz.remapper.FIleHandler
+cf/phoenixfirewingz/remapper/JsonData.java
+ cf.phoenixfirewingz.remapper.JsonData

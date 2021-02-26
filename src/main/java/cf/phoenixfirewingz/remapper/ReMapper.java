@@ -1,4 +1,4 @@
-import java.util.StringTokenizer;
+package cf.phoenixfirewingz.remapper;
 
 public class ReMapper
 {
@@ -24,6 +24,7 @@ public class ReMapper
 			else
 					ret_string.append(fixOther(s.replace('#',' '))).append("\n");
 		}
+		System.out.println(ret_string.toString() + "\n=================================================================");
 		return ret_string.toString();
 	}
 
@@ -33,7 +34,7 @@ public class ReMapper
 
 		if(s.contains("public") || s.contains("private") || s.contains("protected"))
 		{
-			String result = Main.constansts.CheckForClassConstMatchFabricIfSoRetIt(s);
+			String result = Main.constansts.CheckForClassConstMatchFabricClassIfSoRetIt(s);
 			if(result != null) return result;
 		}
 		//fixme: need to add function remapping
@@ -47,20 +48,11 @@ public class ReMapper
 		int i = 0;
 		while(i < data.length)
 		{
-			if(data[i].contains("extends"))
+			if(data[i].contains("extends") || data[i].contains("implements"))
 			{
 				i++;
-				String result = Main.constansts.CheckForClassConstMatchFabricIfSoRetIt(data[i]);
+				String result = Main.constansts.CheckForClassConstMatchFabricClassIfSoRetIt(data[i]);
 				if(result != null) data[i] = result;
-			}
-			else if(data[i].contains("implements"))
-			{
-				System.out.println("implements are not done yet");
-				/*
-				String result = FabricConstants.CheckForFabricConstIfSoRetIt(data[i + 1]);
-				if(result != null) data[i + 1] = result;
-
-				i++;*/
 			}
 			i++;
 		}

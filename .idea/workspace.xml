@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f10d3353-b31d-445e-8be2-006b5133c196" name="Default Changelist" comment="" />
+    <list default="true" id="b35b1bd9-ed9b-4cee-b1ef-43a99f009352" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -14,10 +37,7 @@
       </list>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Process.java" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="ProjectId" id="1ozsXLLnT2INhn02Wc3VpyefUVY" />
+  <component name="ProjectId" id="1p1cowOqPyNwkDhKGDlA0SBzQAg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,29 +47,63 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resource/new" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build/libs/ForgeToFabricRemapper-all-1.0-SNAPSHOT.jar" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\luket\Desktop\programing\MCPToFabric\resource\new" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\luket\Desktop\programing\ForgeToFabricRemapper\src\main\java" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
+  </component>
+  <component name="RunManager" selected="JAR Application.test">
+    <configuration name="ForgeToFabricRemapper [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/ForgeToFabricRemapper-all-1.0-SNAPSHOT.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\luket\Desktop\programing\ForgeToFabricRemapper" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <module name="ForgeToFabricRemapper.main" />
+      <method v="2">
+        <option name="Gradle.BeforeRunTask" enabled="true" tasks="fatJar" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.ForgeToFabricRemapper [dependencies]" />
+      <item itemvalue="JAR Application.test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ForgeToFabricRemapper [dependencies]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f10d3353-b31d-445e-8be2-006b5133c196" name="Default Changelist" comment="" />
-      <created>1614300794889</created>
+      <changelist id="b35b1bd9-ed9b-4cee-b1ef-43a99f009352" name="Default Changelist" comment="" />
+      <created>1614354215855</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1614300794889</updated>
+      <updated>1614354215855</updated>
     </task>
     <servers />
   </component>
