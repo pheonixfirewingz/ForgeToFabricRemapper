@@ -15,7 +15,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		System.out.println("getting lastest ForgeToFabricRemapper mapping....\n");
-		constansts = new Constansts("C:\\Users\\sindr\\Dokumenter\\Development\\Misc\\ForgeToFabricRemapper\\mappings.json");
+		constansts = new Constansts(System.getProperty("user.dir") + "\\mappings.json");
 		System.out.println("start remapping classes.......\n");
 		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
 	}
