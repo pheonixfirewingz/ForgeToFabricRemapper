@@ -64,7 +64,7 @@ public class ReMapper
 	//forge
 	public static String maptoForge(String data)
 	{
-		System.out.println("fabric to forge is not implemented");
+		System.out.println("fabric to forge is not implemented yet");
 		return null;
 	}
 
