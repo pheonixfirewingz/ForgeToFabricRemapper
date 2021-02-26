@@ -1,6 +1,6 @@
 package cf.phoenixfirewingz.remapper;
 
-import cf.phoenixfirewingz.remapper.common.Mapping;
+import cf.phoenixfirewingz.remapper.common.*;
 import cf.phoenixfirewingz.remapper.utils.*;
 
 import java.util.Vector;
@@ -17,6 +17,13 @@ public class Constansts
 	public Constansts(String path)
 	{
 		Mapping mapping = JsonData.readJsonMap(false,path);
+		for(MapEntry entry:mapping.getMappings())
+		{
+			if(entry.getType().equals("class"))
+				constans_classes.add(new StringTuple(entry.getForge(), entry.getFabric()));
+			else
+				constans_methods.add(new StringTuple(entry.getForge(), entry.getFabric()));
+		}
 		int i = 0;
 	}
 

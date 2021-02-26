@@ -1,21 +1,24 @@
 package cf.phoenixfirewingz.remapper.common;
 
 import cf.phoenixfirewingz.remapper.utils.JsonData;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Vector;
 
 public class Config
 {
-	public String mod_directory;
-	public boolean map_to_fabric;
+	@SerializedName("mod_directory")
+	public String modDirectory;
+	@SerializedName("should_map_to_fabric")
+	public boolean shouldMapToFabric;
 
-	public String getMod_directory()
+	public String getModDirectory()
 	{
-		return mod_directory;
+		return modDirectory;
 	}
 
-	public boolean isMap_to_fabric()
+	public boolean shouldMapToFabric()
 	{
-		return map_to_fabric;
+		return shouldMapToFabric;
 	}
 }

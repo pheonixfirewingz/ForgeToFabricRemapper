@@ -1,19 +1,23 @@
 package cf.phoenixfirewingz.remapper.common;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Mapping
 {
-	public String mcp_version;
-	public String yarn_version;
+	@SerializedName("mcp_version")
+	public String mcpVersion;
+	@SerializedName("yarn_version")
+	public String yarnVersion;
 	public MapEntry[] mappings;
 
-	public String getMcp_version()
+	public String getMcpVersion()
 	{
-		return mcp_version;
+		return mcpVersion;
 	}
 
-	public String getYarn_version()
+	public String getYarnVersion()
 	{
-		return yarn_version;
+		return yarnVersion;
 	}
 
 	public MapEntry[] getMappings()

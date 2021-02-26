@@ -17,7 +17,7 @@ public class Main
 		System.out.println("getting lastest ForgeToFabricRemapper mapping....\n");
 		constansts = new Constansts("http://phoenixfirewingz.cf/ForgeToFabricMapping.json");
 		System.out.println("start remapping classes.......\n");
-		//readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
+		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
 	}
 
 	public static void readDir(File in)

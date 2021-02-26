@@ -28,7 +28,7 @@ public class Process implements Runnable
 			exception.printStackTrace();
 		}
 
-		if(Main.config.isMap_to_fabric()) remapped_data = ReMapper.maptoFabric(data);
+		if(Main.config.shouldMapToFabric()) remapped_data = ReMapper.maptoFabric(data);
 		else remapped_data = ReMapper.maptoForge(data);
 
 		try

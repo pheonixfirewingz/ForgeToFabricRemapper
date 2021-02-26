@@ -5,7 +5,7 @@ public class ReMapper
 	//fabric
 	public static String maptoFabric(String data)
 	{
-		StringBuilder ret_string = new StringBuilder("");
+		StringBuilder ret_string = new StringBuilder();
 		String[] process_string = data.replace(' ','#').split("\n");
 		for(String s:process_string)
 		{
@@ -24,6 +24,7 @@ public class ReMapper
 			else
 					ret_string.append(fixOther(s.replace('#',' '))).append("\n");
 		}
+		//this output is debug
 		System.out.println(ret_string.toString() + "\n=================================================================");
 		return ret_string.toString();
 	}
@@ -34,6 +35,7 @@ public class ReMapper
 
 		if(s.contains("public") || s.contains("private") || s.contains("protected"))
 		{
+			System.out.println(s);
 			String result = Main.constansts.CheckForClassConstMatchFabricClassIfSoRetIt(s);
 			if(result != null) return result;
 		}
@@ -67,7 +69,7 @@ public class ReMapper
 	}
 
 	//shared functions
-	private static final String[] ok_starts = {"java","com.google","org.jetbrains",Main.config.getMod_directory()};
+	private static final String[] ok_starts = {"java","com.google","org.jetbrains",Main.config.getModDirectory()};
 
 	private static boolean checkImport(String s)
 	{

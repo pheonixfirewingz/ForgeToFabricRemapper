@@ -8,10 +8,8 @@ public class FIleHandler
 	public static BufferedReader getReader(boolean isLocal,String path) throws Exception
 	{
 		BufferedReader in;
-		if(!isLocal)
-			in = new BufferedReader(new InputStreamReader(new URL(path).openStream()));
-		else
-			in = new BufferedReader(new FileReader(new File(path)));
+		if(!isLocal) in = new BufferedReader(new InputStreamReader(new URL(path).openStream()));
+		else in = new BufferedReader(new FileReader(path));
 
 		return in;
 	}
