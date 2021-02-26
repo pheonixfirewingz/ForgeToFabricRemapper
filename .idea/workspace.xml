@@ -65,7 +65,7 @@
       <recent name="C:\Users\luket\Desktop\programing\ForgeToFabricRemapper\src\main\java" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JAR Application.test">
     <configuration name="ForgeToFabricRemapper [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -97,6 +97,15 @@
         <option name="Gradle.BeforeRunTask" enabled="true" tasks="fatJar" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.ForgeToFabricRemapper [dependencies]" />
+      <item itemvalue="JAR Application.test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ForgeToFabricRemapper [dependencies]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -112,5 +121,16 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.gitignore" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cf/phoenixfirewingz/remapper/utils/FIleHandler.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

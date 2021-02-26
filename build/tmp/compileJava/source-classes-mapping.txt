@@ -4,13 +4,13 @@ cf/phoenixfirewingz/remapper/utils/StringTuple.java
  cf.phoenixfirewingz.remapper.utils.StringTuple
 cf/phoenixfirewingz/remapper/utils/VectorTuple.java
  cf.phoenixfirewingz.remapper.utils.VectorTuple
-cf/phoenixfirewingz/remapper/Main.java
- cf.phoenixfirewingz.remapper.Main
+cf/phoenixfirewingz/remapper/Constansts.java
+ cf.phoenixfirewingz.remapper.Constansts
 cf/phoenixfirewingz/remapper/utils/JsonData.java
  cf.phoenixfirewingz.remapper.utils.JsonData
 cf/phoenixfirewingz/remapper/utils/FIleHandler.java
  cf.phoenixfirewingz.remapper.utils.FIleHandler
-cf/phoenixfirewingz/remapper/Constansts.java
- cf.phoenixfirewingz.remapper.Constansts
+cf/phoenixfirewingz/remapper/Main.java
+ cf.phoenixfirewingz.remapper.Main
 cf/phoenixfirewingz/remapper/ReMapper.java
  cf.phoenixfirewingz.remapper.ReMapper
