@@ -58,9 +58,12 @@ public class Main
 			exception.printStackTrace();
 		}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 //		System.out.println("start remapping classes.......\n");
 //		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
 =======
+=======
+>>>>>>> Stashed changes
 		constansts = new Constansts(System.getProperty("user.dir") + "\\mappings.json");
 		System.out.println("start remapping classes.......\n");
 		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
