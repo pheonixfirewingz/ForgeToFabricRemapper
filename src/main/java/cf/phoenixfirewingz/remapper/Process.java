@@ -3,7 +3,6 @@ package cf.phoenixfirewingz.remapper;
 import cf.phoenixfirewingz.remapper.utils.FileHandler;
 
 import java.io.*;
-import java.util.Objects;
 
 public class Process implements Runnable
 {

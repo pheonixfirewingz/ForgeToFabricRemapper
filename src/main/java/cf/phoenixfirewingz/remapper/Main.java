@@ -57,20 +57,10 @@ public class Main
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-//		System.out.println("start remapping classes.......\n");
-//		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 		constansts = new Constansts(System.getProperty("user.dir") + "\\mappings.json");
-		System.out.println("start remapping classes.......\n");
-		readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
->>>>>>> Stashed changes
+		//System.out.println("start remapping classes.......\n");
+		//readDir(new File(System.getProperty("user.dir") + "\\resource\\old"));
 	}
 
 	public static void readDir(File in)

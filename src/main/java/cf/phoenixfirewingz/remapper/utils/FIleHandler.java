@@ -13,7 +13,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class FileHandler {
+public class FileHandler
+{
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	public static BufferedReader getReader(boolean isLocal,String path) throws Exception {
