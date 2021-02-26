@@ -1,0 +1,40 @@
+package com.minecolonies.api.advancements.citizen_eat_food;
+
+import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
+
+public class CitizenEatFoodTrigger extends AbstractCriterionTrigger<CitizenEatFoodListeners, CitizenEatFoodCriterionInstance>
+{
+    public CitizenEatFoodTrigger()
+    {
+        super(new ResourceLocation(Constants.MOD_ID, Constants.CRITERION_CITIZEN_EAT_FOOD), CitizenEatFoodListeners::new);
+    }
+
+    /**
+     * Triggers the listener checks if there are any listening in
+     * @param player the player the check regards
+     * @param foodItemStack the food eaten by the citizen
+     */
+    public void trigger(final ServerPlayerEntity player, final ItemStack foodItemStack)
+    {
+        if (player != null)
+        {
+            final CitizenEatFoodListeners listeners = this.getListeners(player.getAdvancements());
+            if (listeners != null)
+            {
+                listeners.trigger(foodItemStack);
+            }
+        }
+    }
+    
+    @Override
+    public CitizenEatFoodCriterionInstance deserialize(final JsonObject jsonObject, final ConditionArrayParser conditionArrayParser)
+    {
+        if (jsonObject.has("items"))
+        {
+            final ItemPredicate[] itemPredicates = ItemPredicate.deserializeArray(jsonObject.get("items"));
+            return new CitizenEatFoodCriterionInstance(itemPredicates);
+        }
+        return new CitizenEatFoodCriterionInstance();
+    }
+}

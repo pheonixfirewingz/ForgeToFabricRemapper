@@ -1,0 +1,48 @@
+package com.minecolonies.coremod.network.messages.server.colony.building.builder;
+
+import org.jetbrains.annotations.NotNull;
+
+
+
+public class BuilderSelectWorkOrderMessage extends AbstractBuildingServerMessage<BuildingBuilder>
+{
+    private int workOrder;
+
+    /**
+     * Empty standard constructor.
+     */
+    public BuilderSelectWorkOrderMessage()
+    {
+        super();
+    }
+
+    /**
+     * Creates a new BuilderSetManualModeMessage.
+     *
+     * @param building View of the building to read data from.
+     * @param workOrder workorder id.
+     */
+    public BuilderSelectWorkOrderMessage(@NotNull final BuildingBuilder.View building, final int workOrder)
+    {
+        super(building);
+        this.workOrder = workOrder;
+    }
+
+    @Override
+    public void fromBytesOverride(final PacketBuffer buf)
+    {
+        workOrder = buf.readInt();
+    }
+
+    @Override
+    public void toBytesOverride(final PacketBuffer buf)
+    {
+        buf.writeInt(workOrder);
+    }
+
+    @Override
+    protected void onExecute(final NetworkEvent.Context ctxIn, final boolean isLogicalServer, final IColony colony, final BuildingBuilder building)
+    {
+        building.setWorkOrder(workOrder);
+    }
+}

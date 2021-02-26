@@ -1,0 +1,50 @@
+package com.minecolonies.coremod.network.messages.client.colony;
+
+import org.jetbrains.annotations.Nullable;
+
+/**
+ * Message for removing a view on the client, used for cleaning up after deletion
+ */
+public class ColonyViewRemoveMessage implements IMessage
+{
+    private int id;
+    private RegistryKey<World> dimension;
+
+    public ColonyViewRemoveMessage()
+    {
+        super();
+    }
+
+    public ColonyViewRemoveMessage(final int id, final RegistryKey<World> dimension)
+    {
+        this.id = id;
+        this.dimension = dimension;
+    }
+
+    @Override
+    public void toBytes(final PacketBuffer buf)
+    {
+        buf.writeInt(id);
+        buf.writeString(dimension.getLocation().toString());
+    }
+
+    @Override
+    public void fromBytes(final PacketBuffer buf)
+    {
+        id = buf.readInt();
+        dimension = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(buf.readString(32767)));
+    }
+
+    @Nullable
+    @Override
+    public LogicalSide getExecutionSide()
+    {
+        return LogicalSide.CLIENT;
+    }
+
+    @Override
+    public void onExecute(final NetworkEvent.Context ctxIn, final boolean isLogicalServer)
+    {
+        IColonyManager.getInstance().removeColonyView(id, dimension);
+    }
+}

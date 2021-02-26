@@ -1,0 +1,95 @@
+package com.minecolonies.api.colony.requestsystem.factory.standard;
+
+import com.google.common.reflect.TypeToken;
+import org.jetbrains.annotations.NotNull;
+
+public class TypeTokenFactory implements IFactory<Class<?>, TypeToken<?>>
+{
+    @NotNull
+    @Override
+    public TypeToken<? extends TypeToken<?>> getFactoryOutputType()
+    {
+        return TypeConstants.TYPETOKEN;
+    }
+
+    @NotNull
+    @Override
+    public TypeToken<? extends Class<?>> getFactoryInputType()
+    {
+        return TypeConstants.CLASS;
+    }
+
+    @NotNull
+    @Override
+    public TypeToken<?> getNewInstance(
+      @NotNull final IFactoryController factoryController, @NotNull final Class<?> aClass, @NotNull final Object... context) throws IllegalArgumentException
+    {
+        return TypeToken.of(aClass);
+    }
+
+    @NotNull
+    @Override
+    public CompoundNBT serialize(@NotNull final IFactoryController controller, @NotNull final TypeToken<?> typeToken)
+    {
+        CompoundNBT compound = new CompoundNBT();
+
+        compound.putString(NbtTagConstants.TAG_VALUE, typeToken.getRawType().getName());
+
+        return compound;
+    }
+
+    @NotNull
+    @Override
+    public TypeToken<?> deserialize(@NotNull final IFactoryController controller, @NotNull final CompoundNBT nbt) throws Throwable
+    {
+        try
+        {
+            return TypeToken.of(Class.forName(nbt.getString(NbtTagConstants.TAG_VALUE)));
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new IllegalStateException("Failed to create TypeToken", e);
+        }
+    }
+
+    public static class TypeTokenSubTypeOverrideHandler implements ITypeOverrideHandler<TypeToken<?>>
+    {
+
+        @Override
+        public boolean matches(final TypeToken<?> inputType)
+        {
+            return ReflectionUtils.getSuperClasses(inputType).contains(TypeConstants.TYPETOKEN);
+        }
+
+        @Override
+        public TypeToken<TypeToken<?>> getOutputType()
+        {
+            return TypeConstants.TYPETOKEN;
+        }
+    }
+
+    @Override
+    public void serialize(IFactoryController controller, TypeToken<?> input, PacketBuffer packetBuffer)
+    {
+        packetBuffer.writeString(input.getRawType().getName());
+    }
+
+    @Override
+    public TypeToken<?> deserialize(IFactoryController controller, PacketBuffer buffer) throws Throwable
+    {
+        try
+        {
+            return TypeToken.of(Class.forName(buffer.readString(32767)));
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new IllegalStateException("Failed to create TypeToken", e);
+        }
+    }
+
+    @Override
+    public short getSerializationId()
+    {
+        return 31;
+    }
+}

@@ -1,0 +1,60 @@
+package com.minecolonies.coremod.colony.colony.jobs.registry;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public final class JobDataManager implements IJobDataManager
+{
+    @Nullable
+    @Override
+    public IJob<?> createFrom(
+      final ICitizenData citizen, @NotNull final CompoundNBT compound)
+    {
+        final ResourceLocation jobType =
+          compound.keySet().contains(NbtTagConstants.TAG_JOB_TYPE) ? new ResourceLocation(compound.getString(NbtTagConstants.TAG_JOB_TYPE)) : ModJobs.PLACEHOLDER_ID;
+        final IJob<?> job = IJobRegistry.getInstance().getValue(jobType).getHandlerProducer().apply(citizen);
+
+        if (job != null)
+        {
+            try
+            {
+                job.deserializeNBT(compound);
+            }
+            catch (final RuntimeException ex)
+            {
+                Log.getLogger().error(String.format("A Job %s has thrown an exception during loading, its state cannot be restored. Report this to the mod author",
+                  jobType), ex);
+                return null;
+            }
+        }
+        else
+        {
+            Log.getLogger().warn(String.format("Unknown Job type '%s' or missing constructor of proper format.", jobType));
+        }
+
+        return job;
+    }
+
+    @Override
+    public IJobView createViewFrom(
+      final IColonyView colony, final ICitizenDataView citizenDataView, final PacketBuffer networkBuffer)
+    {
+        final ResourceLocation jobName = new ResourceLocation(networkBuffer.readString(32767));
+        final JobEntry entry = IJobRegistry.getInstance().getValue(jobName);
+
+        if (entry == null)
+        {
+            Log.getLogger().error(String.format("Unknown job type '%s'.", jobName), new Exception());
+            return null;
+        }
+
+        final IJobView view = entry.getJobViewProducer().get().apply(colony, citizenDataView);
+
+        if (view != null)
+        {
+            view.deserialize(networkBuffer);
+        }
+
+        return view;
+    }
+}

@@ -1,0 +1,24 @@
+package com.minecolonies.coremod.colony.colony.requestsystem.management.handlers.update.implementation;
+
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Update fix to clear completed requests that were never cleaned up.
+ */
+public class ResetRSToCleanCompletedRequests implements IUpdateStep
+{
+    @Override
+    public int updatesToVersion()
+    {
+        return 4;
+    }
+
+    @Override
+    public void update(@NotNull final UpdateType type, @NotNull final IStandardRequestManager manager)
+    {
+        if (type == UpdateType.DATA_LOAD)
+        {
+            manager.reset();
+        }
+    }
+}

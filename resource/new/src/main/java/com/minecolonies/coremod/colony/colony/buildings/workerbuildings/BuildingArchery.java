@@ -1,0 +1,236 @@
+package com.minecolonies.coremod.colony.colony.buildings.workerbuildings;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+
+
+/**
+ * Building class for the Archery.
+ */
+public class BuildingArchery extends AbstractBuildingWorker
+{
+    /**
+     * The Schematic name.
+     */
+    private static final String SCHEMATIC_NAME = "archery";
+
+    /**
+     * The Schematic name.
+     */
+    private static final String DESC = "archery";
+
+    /**
+     * List of shooting stands in the building.
+     */
+    private final List<BlockPos> shootingStands = new ArrayList<>();
+
+    /**
+     * List of shooting targets in the building.
+     */
+    private final List<BlockPos> shootingTargets = new ArrayList<>();
+
+    /**
+     * The abstract constructor of the building.
+     *
+     * @param c the colony
+     * @param l the position
+     */
+    public BuildingArchery(@NotNull final IColony c, final BlockPos l)
+    {
+        super(c, l);
+    }
+
+    @NotNull
+    @Override
+    public IJob<?> createJob(final ICitizenData citizen)
+    {
+        return new JobArcherTraining(citizen);
+    }
+
+    @Override
+    public boolean assignCitizen(final ICitizenData citizen)
+    {
+        if (super.assignCitizen(citizen) && citizen != null)
+        {
+            // Set new home, since guards are housed at their workerbuilding.
+            final IBuilding building = citizen.getHomeBuilding();
+            if (building != null && !building.getID().equals(this.getID()))
+            {
+                building.removeCitizen(citizen);
+            }
+            citizen.setHomeBuilding(this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void registerBlockPosition(@NotNull final Block block, @NotNull final BlockPos pos, @NotNull final World world)
+    {
+        if (block == Blocks.TARGET)
+        {
+            shootingTargets.add(pos);
+        }
+        else if (block == Blocks.GLOWSTONE)
+        {
+            shootingStands.add(pos);
+        }
+        super.registerBlockPosition(block, pos, world);
+    }
+
+    @Override
+    public void requestUpgrade(final PlayerEntity player, final BlockPos builder)
+    {
+        final UnlockBuildingResearchEffect effect = colony.getResearchManager().getResearchEffects().getEffect(ResearchInitializer.ARCHERY_RESEARCH, UnlockBuildingResearchEffect.class);
+        if (effect == null)
+        {
+            player.sendMessage(new TranslationTextComponent("com.minecolonies.coremod.research.havetounlock"), player.getUniqueID());
+            return;
+        }
+        super.requestUpgrade(player, builder);
+    }
+
+    @Override
+    public void deserializeNBT(final CompoundNBT compound)
+    {
+        super.deserializeNBT(compound);
+        shootingTargets.clear();
+        shootingStands.clear();
+
+        final ListNBT targetList = compound.getList(TAG_ARCHERY_TARGETS, Constants.NBT.TAG_COMPOUND);
+        shootingTargets.addAll(NBTUtils.streamCompound(targetList).map(targetCompound -> BlockPosUtil.read(targetCompound, TAG_TARGET)).collect(Collectors.toList()));
+
+        final ListNBT standTagList = compound.getList(TAG_ARCHERY_STANDS, Constants.NBT.TAG_COMPOUND);
+        shootingStands.addAll(NBTUtils.streamCompound(standTagList).map(targetCompound -> BlockPosUtil.read(targetCompound, TAG_STAND)).collect(Collectors.toList()));
+    }
+
+    @Override
+    public CompoundNBT serializeNBT()
+    {
+        final CompoundNBT compound = super.serializeNBT();
+
+        final ListNBT targetList = shootingTargets.stream().map(target -> BlockPosUtil.write(new CompoundNBT(), TAG_TARGET, target)).collect(NBTUtils.toListNBT());
+        compound.put(TAG_ARCHERY_TARGETS, targetList);
+
+        final ListNBT standTagList = shootingStands.stream().map(target -> BlockPosUtil.write(new CompoundNBT(), TAG_STAND, target)).collect(NBTUtils.toListNBT());
+        compound.put(TAG_ARCHERY_STANDS, standTagList);
+
+        return compound;
+    }
+
+    @NotNull
+    @Override
+    public String getSchematicName()
+    {
+        return SCHEMATIC_NAME;
+    }
+
+    @SuppressWarnings("squid:S109")
+    @Override
+    public int getMaxBuildingLevel()
+    {
+        return 5;
+    }
+
+    @NotNull
+    @Override
+    public String getJobName()
+    {
+        return "archer";
+    }
+
+    @NotNull
+    @Override
+    public Skill getPrimarySkill()
+    {
+        return Skill.Agility;
+    }
+
+    @NotNull
+    @Override
+    public Skill getSecondarySkill()
+    {
+        return Skill.Adaptability;
+    }
+
+    @Override
+    public int getMaxInhabitants()
+    {
+        return getBuildingLevel();
+    }
+
+    /**
+     * Get a random position to shoot from.
+     *
+     * @param random the random obj.
+     * @return a random shooting stand position.
+     */
+    public BlockPos getRandomShootingStandPosition(final Random random)
+    {
+        if (!shootingStands.isEmpty())
+        {
+            return shootingStands.get(random.nextInt(shootingStands.size()));
+        }
+        return null;
+    }
+
+    /**
+     * Get a random position to shoot at.
+     *
+     * @param random the random obj.
+     * @return a random shooting target position.
+     */
+    public BlockPos getRandomShootingTarget(final Random random)
+    {
+        if (!shootingTargets.isEmpty())
+        {
+            return shootingTargets.get(random.nextInt(shootingTargets.size()));
+        }
+        return null;
+    }
+
+    @Override
+    public BuildingEntry getBuildingRegistryEntry()
+    {
+        return ModBuildings.archery;
+    }
+
+    /**
+     * The client view for the bakery building.
+     */
+    public static class View extends AbstractBuildingWorker.View implements IBuildingCanBeHiredFrom
+    {
+        /**
+         * The client view constructor for the AbstractGuardBuilding.
+         *
+         * @param c the colony.
+         * @param l the location.
+         */
+        public View(final IColonyView c, @NotNull final BlockPos l)
+        {
+            super(c, l);
+        }
+
+        @NotNull
+        @Override
+        public Window getWindow()
+        {
+            return new WindowHutWorkerPlaceholder<>(this, DESC);
+        }
+
+        /**
+         * Check if it has enough workers.
+         *
+         * @return true if so.
+         */
+        @Override
+        public boolean hasEnoughWorkers()
+        {
+            return getWorkerId().size() >= getBuildingLevel();
+        }
+    }
+}
