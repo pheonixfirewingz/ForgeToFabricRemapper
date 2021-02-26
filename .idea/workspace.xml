@@ -3,12 +3,20 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b35b1bd9-ed9b-4cee-b1ef-43a99f009352" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -47,6 +55,9 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build/libs/ForgeToFabricRemapper-all-1.0-SNAPSHOT.jar" />
   </component>
   <component name="RecentsManager">
@@ -54,7 +65,7 @@
       <recent name="C:\Users\luket\Desktop\programing\ForgeToFabricRemapper\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.test">
+  <component name="RunManager">
     <configuration name="ForgeToFabricRemapper [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -86,15 +97,6 @@
         <option name="Gradle.BeforeRunTask" enabled="true" tasks="fatJar" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Gradle.ForgeToFabricRemapper [dependencies]" />
-      <item itemvalue="JAR Application.test" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.ForgeToFabricRemapper [dependencies]" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -104,7 +106,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614354215855</updated>
+      <workItem from="1614364708136" duration="37000" />
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.gitignore" />
   </component>
 </project>
