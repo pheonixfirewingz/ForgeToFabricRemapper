@@ -5,13 +5,11 @@ import java.util.concurrent.atomic.*;
 
 public class Constansts
 {
-	public final Mappings forge;
-	public final Mappings fabric_intermittency;
+	public final Mappings mappings;
 
-	public Constansts(Mappings forge, Mappings fabric_intermitery)
+	public Constansts(Mappings mappings)
 	{
-		this.forge = forge;
-		this.fabric_intermittency = fabric_intermitery;
+		this.mappings = mappings;
 	}
 
 	public boolean isForgeClass(String s)
@@ -26,7 +24,7 @@ public class Constansts
 	public boolean isFabricClass(String s)
 	{
 		AtomicBoolean isClass = new AtomicBoolean(false);
-		fabric_intermittency.classes.forEach((String t,String i) -> {
+		fabric_intermediary.classes.forEach((String t, String i) -> {
 			if(s.equals(i)) isClass.set(true);
 		});
 		return isClass.get();
@@ -44,7 +42,7 @@ public class Constansts
 	public boolean isFabricName(String s)
 	{
 		AtomicBoolean isMethod = new AtomicBoolean(false);
-		fabric_intermittency.methods.forEach((String t,String i) -> {
+		fabric_intermediary.methods.forEach((String t, String i) -> {
 			if(s.equals(i)) isMethod.set(true);
 		});
 		return isMethod.get();
@@ -53,7 +51,7 @@ public class Constansts
 	public String convertIntermittencyClassToFabric(String s)
 	{
 		AtomicReference<String> newName = new AtomicReference<>();
-		fabric_intermittency.classes.forEach((String t,String r) -> {
+		fabric_intermediary.classes.forEach((String t, String r) -> {
 			if(s.equals(t)) newName.set(r);
 		});
 		return newName.get();
@@ -62,7 +60,7 @@ public class Constansts
 	public String convertIntermittencyMethodToFabric(String s)
 	{
 		AtomicReference<String> newName = new AtomicReference<>();
-		fabric_intermittency.methods.forEach((String t,String r) -> {
+		fabric_intermediary.methods.forEach((String t, String r) -> {
 			if(s.equals(t)) newName.set(r);
 		});
 		return newName.get();

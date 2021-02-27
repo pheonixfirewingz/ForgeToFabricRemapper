@@ -1,5 +1,6 @@
 package cf.phoenixfirewingz.remapper.common;
 
+import cf.phoenixfirewingz.remapper.utils.FileHandler;
 import cf.phoenixfirewingz.remapper.utils.JsonUtils;
 
 import java.io.*;
@@ -78,23 +79,10 @@ public class Mappings {
 	}
 
 	private void writeMappingData(Map<String, String> data, File textFile) {
-		try {
-			textFile.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		try (FileWriter fileWriter = new FileWriter(textFile)) {
-			data.entrySet().stream()
-					.sorted(Comparator.comparing(Map.Entry::getKey))
-					.forEach(entry -> {
-						try {
-							fileWriter.write(entry.getKey() + "->" + entry.getValue() + "\n");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});
-			fileWriter.flush();
-		} catch (IOException ignored) {
-		}
+		StringBuilder builder = new StringBuilder();
+		data.entrySet().stream()
+				.sorted(Map.Entry.comparingByKey())
+				.forEach(entry -> builder.append(entry.getKey()).append("->").append(entry.getValue()).append("\n"));
+		FileHandler.write(builder.toString(), textFile.getPath());
 	}
 }

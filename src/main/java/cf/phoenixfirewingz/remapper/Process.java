@@ -12,13 +12,13 @@ public class Process implements Runnable
 	{
 		name = file.getName();
 		tokened_data = FileHandler.read(true, file.toString()).replace('\n', ' ').split(" ");
-		path_to_new_source_file = file.toString().replace("old","new");
+		path_to_new_source_file = file.getPath().replace("old","new");
 	}
 
 	@Override public void run()
 	{
 		Main.common_logger.log("ReMapping:" + name);
-		String intermediary = ReMapper.mapToIntermittency(tokened_data);
+		String intermediary = ReMapper.mapToIntermediary(tokened_data);
 
 		Main.common_logger.logDebug(intermediary);
 

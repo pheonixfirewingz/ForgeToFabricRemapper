@@ -2,7 +2,7 @@ package cf.phoenixfirewingz.remapper;
 
 public class ReMapper
 {
-	public static String mapToIntermittency(String[] data)
+	public static String mapToIntermediary(String[] data)
 	{
 		return null;
 	}

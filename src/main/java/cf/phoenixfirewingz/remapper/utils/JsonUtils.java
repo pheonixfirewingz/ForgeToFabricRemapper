@@ -18,7 +18,7 @@ public class JsonUtils
 		Config config = null;
 		try
 		{
-			config = gson.fromJson(new JsonReader(FileHandler.getReader(true,Defines.jar_root + "\\MinecoloniesConfig.json")), Config.class);
+			config = gson.fromJson(new JsonReader(FileHandler.getReader(true,Defines.jar_root + "\\Config.json")), Config.class);
 		}
 		catch(Exception exception)
 		{
