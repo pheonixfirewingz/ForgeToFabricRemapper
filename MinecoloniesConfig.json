@@ -1,0 +1,8 @@
+{
+  "modDirectory": "com.minecolonies",
+  "shouldMapToFabric": true,
+  "version": "1.16.5",
+  "yarnVersion": 5,
+  "mcpMappingsChannel": "snapshot",
+  "mcpMappings": "20201028-1.16.3"
+}

@@ -2,45 +2,29 @@ package cf.phoenixfirewingz.remapper;
 
 import cf.phoenixfirewingz.remapper.utils.FileHandler;
 
-import java.io.*;
+import java.io.File;
 
 public class Process implements Runnable
 {
-	String data_of_file, path_to_new_source_file, name;
+	String[] tokened_data;
+	String path_to_new_source_file, name;
 	public Process(File file)
 	{
 		name = file.getName();
-		try
-		{
-			data_of_file = FileHandler.read(true,file.toString());
-		}
-		catch(Exception exception)
-		{
-			exception.printStackTrace();
-		}
+		tokened_data = FileHandler.read(true, file.toString()).replace('\n', ' ').split(" ");
 		path_to_new_source_file = file.toString().replace("old","new");
 	}
 
 	@Override public void run()
 	{
-		System.out.println("mapping: " + name);
-		String intermediary_source = null;
-		try
-		{
-			if(Main.config.shouldMapToFabric)
-				intermediary_source = ReMapper.mapFromForge(data_of_file);
-			else
-				intermediary_source = ReMapper.mapFromYarn(data_of_file);
-		}
-		catch(Exception exception)
-		{
-			exception.printStackTrace();
-		}
+		Main.common_logger.log("ReMapping:" + name);
+		String intermediary = ReMapper.mapToIntermittency(tokened_data);
+
+		Main.common_logger.logDebug(intermediary);
 
 		String remapped_data;
-		if(Main.config.shouldMapToFabric) remapped_data = ReMapper.mapToYarn(intermediary_source);
-		else remapped_data = ReMapper.maptoForge(intermediary_source);
-
-		FileHandler.write(remapped_data, path_to_new_source_file);
+		if(Main.config.shouldMapToFabric) remapped_data = ReMapper.mapToYarn(intermediary);
+		else ReMapper.mapToForge(intermediary);
+		//Main.common_logger.log("mapping: " + name);
 	}
 }
