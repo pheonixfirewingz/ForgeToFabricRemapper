@@ -2,21 +2,21 @@ package cf.phoenixfirewingz.remapper.utils;
 
 public class StringTuple
 {
-	private final String A,B;
+	private final String forge, fabric;
 
-	public StringTuple(String a, String b)
+	public StringTuple(String forgeIn, String fabricIn)
 	{
-		A = a;
-		B = b;
+		forge = forgeIn;
+		fabric = fabricIn;
 	}
 
-	public String getA()
+	public String getForge()
 	{
-		return A;
+		return forge;
 	}
 
-	public String getB()
+	public String getFabric()
 	{
-		return B;
+		return fabric;
 	}
 }

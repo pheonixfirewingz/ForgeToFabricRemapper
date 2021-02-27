@@ -50,6 +50,9 @@ public class Main
 			srg.writeDebugMapping(new File(Defines.jar_root + "\\resource\\cache\\srg"), new File(Defines.cache_location, "mcp.json"));
 			yarn.writeDebugMapping(new File(Defines.jar_root + "\\resource\\cache\\yarn"), new File(Defines.cache_location, "yarn.json"));
 
+			mappings.classes.put("net/minecraftforge/api/distmarker/OnlyIn", "net/fabricmc/api/Environment");
+			mappings.classes.put("net/minecraftforge/api/distmarker/Dist", "net/fabricmc/api/EnvType");
+
 			for(File file : Defines.cache_location.listFiles()) {
 				if (!file.getPath().endsWith(".json")) {
 					file.delete();

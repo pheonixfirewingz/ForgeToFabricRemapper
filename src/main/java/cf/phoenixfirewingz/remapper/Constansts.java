@@ -20,13 +20,13 @@ public class Constansts
 		for(StringTuple s:changeMapping.getNames())
 		{
 			String temp;
-			if(line.contains(s.getA()))
+			if(line.contains(s.getForge()))
 			{
-				temp = current.replace(s.getA(), s.getB());
+				temp = current.replace(s.getForge(), s.getFabric());
 				current = temp;
 			}
 		}
-		return line;
+		return current;
 	}
 
 	public String mapToForge(String line)
@@ -35,12 +35,12 @@ public class Constansts
 		for(StringTuple s:changeMapping.getNames())
 		{
 			String temp;
-			if(line.contains(s.getB()))
+			if(line.contains(s.getFabric()))
 			{
-				temp = current.replace(s.getB(), s.getA());
+				temp = current.replace(s.getFabric(), s.getForge());
 				current = temp;
 			}
 		}
-		return line;
+		return current;
 	}
 }
