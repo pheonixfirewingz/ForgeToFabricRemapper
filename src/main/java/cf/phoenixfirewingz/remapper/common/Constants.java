@@ -23,6 +23,16 @@ public class Constants
 		return line;
 	}
 
+	public String mapToImportsMojang(String line)
+	{
+		for(StringTuple s: mappings.getNames())
+		{
+			if(line.equals(s.getForge()))
+				return "import " + s.getFabric() + ";";
+		}
+		return line;
+	}
+
 	public String mapToImportsForge(String line)
 	{
 		for(StringTuple s:mappings.getNames())
@@ -49,6 +59,21 @@ public class Constants
 	}
 
 	public String mapToForge(String line)
+	{
+		String current = line;
+		for(StringTuple s:changeMapping.getNames())
+		{
+			String temp;
+			if(line.contains(s.getFabric()))
+			{
+				temp = current.replace(s.getFabric(), s.getForge());
+				current = temp;
+			}
+		}
+		return current;
+	}
+
+	public String mapToMojang(String line)
 	{
 		String current = line;
 		for(StringTuple s:changeMapping.getNames())

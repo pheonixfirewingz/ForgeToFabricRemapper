@@ -24,7 +24,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		Mappings mappings = null;
-		File mapping = new File(Defines.cacheMap_location, "mappings.tiny");
+		File mapping = new File(Defines.cacheMap_location, "mappingsgrwgwe.tiny");
 		if(!mapping.exists())
 		{
 			common_logger.log("getting latest defined mappings....");
@@ -40,18 +40,21 @@ public class Main
 				Mappings yarn = FabricUtils.readYarnV1(Objects.requireNonNull(FileHandler.getReader(yarn_File)),"official","named");
 				assert yarn != null;
 
+				File mojang_client_File = FileHandler.download("https://launcher.mojang.com/v1/objects/374c6b789574afbdc901371207155661e0509e17/client.txt");
+				File mojang_server_File = FileHandler.download("https://launcher.mojang.com/v1/objects/41285beda6d251d190f2bf33beadd4fee187df7a/server.txt");
+
 				mappings = srg.invert().chain(yarn, false);
 
-				if(!config.shouldMapToFabric) mappings = mappings.invert();
+				if(!config.convertion.reverse) mappings = mappings.invert();
+
+				mappings.classes.put("net/minecraftforge/api/distmarker/OnlyIn", "net/fabricmc/api/Environment");
+				mappings.classes.put("net/minecraftforge/api/distmarker/Dist", "net/fabricmc/api/EnvType");
 
 				mappings.writeDebugMapping(new File(Defines.jar_root + "\\resource\\cache\\mappings"), new File(Defines.cache_location, "chained_mapping.json"));
 				srg.writeDebugMapping(new File(Defines.jar_root + "\\resource\\cache\\srg"), new File(Defines.cache_location, "mcp.json"));
 				yarn.writeDebugMapping(new File(Defines.jar_root + "\\resource\\cache\\yarn"), new File(Defines.cache_location, "yarn.json"));
 
-				mappings.classes.put("net/minecraftforge/api/distmarker/OnlyIn", "net/fabricmc/api/Environment");
-				mappings.classes.put("net/minecraftforge/api/distmarker/Dist", "net/fabricmc/api/EnvType");
-
-				FileHandler.deleteAllCasheFilesExceptThisDirectory("mappings");
+//				FileHandler.deleteAllCasheFilesExceptThisDirectory("mappings");
 			}
 			catch(IOException exception)
 			{
@@ -69,7 +72,7 @@ public class Main
 														new File(Defines.cacheMap_location, "methods.txt"))));
 		}
 		common_logger.log("start remapping classes.......");
-		readDir(new ResourceLocation("old"));
+//		readDir(new ResourceLocation("old"));
 	}
 
 	public static void readDir(File in)

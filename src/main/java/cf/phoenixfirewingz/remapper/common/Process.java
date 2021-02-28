@@ -18,10 +18,14 @@ public class Process implements Runnable
 		StringBuilder builder = new StringBuilder();
 		for(String s:split)
 		{
-			if(Main.config.shouldMapToFabric)
-				builder.append(Main.constants.mapToImportsFabric(s));
-			else
-				builder.append(Main.constants.mapToImportsForge(s));
+			switch(Main.config.convertion.to) {
+				case FORGE:
+					builder.append(Main.constants.mapToImportsForge(s));
+				case FABRIC:
+					builder.append(Main.constants.mapToImportsFabric(s));
+				case MOJANG:
+					builder.append(Main.constants.mapToImportsMojang(s));
+			}
 			builder.append("\n");
 		}
 		return builder.toString();
@@ -29,10 +33,16 @@ public class Process implements Runnable
 
 	public static String remap(String data)
 	{
-		if(Main.config.shouldMapToFabric)
-			return Main.constants.mapToFabric(data);
-		else
-			return Main.constants.mapToForge(data);
+		switch(Main.config.convertion.to) {
+			case FORGE:
+				return Main.constants.mapToForge(data);
+			case FABRIC:
+				return Main.constants.mapToFabric(data);
+			case MOJANG:
+				return Main.constants.mapToMojang(data);
+			default:
+				throw new IllegalStateException();
+		}
 	}
 
 	public static String remap(String[] data)
