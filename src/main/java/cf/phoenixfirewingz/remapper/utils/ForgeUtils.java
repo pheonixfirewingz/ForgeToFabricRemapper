@@ -3,26 +3,35 @@ package cf.phoenixfirewingz.remapper.utils;
 import cf.phoenixfirewingz.remapper.Main;
 import cf.phoenixfirewingz.remapper.common.Mappings;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class ForgeUtils extends CommonUtils
 {
+	private static final Logger forge_logger = new Logger("forge");
 
-	public static Mappings readSrg(BufferedReader s, Map<String, String> fieldNames, Map<String, String> methodNames) {
-		Main.forge_logger.log("reading svg mapping");
-		Map<String, String> classes = new LinkedHashMap<>();
-		Map<String, String> fields = new LinkedHashMap<>();
-		Map<String, String> methods = new LinkedHashMap<>();
+	public static Mappings readForgeMapping(String svg,String csv)
+	{
+		try
+		{
+			forge_logger.log("reading svg mapping");
+			BufferedReader s = FileHandler.getReader(FileHandler.download(svg));
+			File csvFile = FileHandler.download(csv);
+			Map<String, String> fieldNames = readCsv(csvFile, "fields.csv"),
+								methodNames= readCsv(csvFile, "methods.csv");
 
-		String currentClassA = null;
-		String currentClassB = null;
-		try {
+			Map<String, String> classes = new LinkedHashMap<>();
+			Map<String, String> fields = new LinkedHashMap<>();
+			Map<String, String> methods = new LinkedHashMap<>();
+
+			String currentClassA = null;
+			String currentClassB = null;
 			String string = "";
-			while ((string = s.readLine()) != null) {
+			while((string = s.readLine()) != null)
+			{
 
-				if (!string.startsWith("\t")) {
+				if(!string.startsWith("\t"))
+				{
 					String[] parts = string.split(" ");
 					classes.put(parts[0], parts[1]);
 					currentClassA = parts[0];
@@ -34,12 +43,14 @@ public class ForgeUtils extends CommonUtils
 
 				String[] parts = string.split(" ");
 
-				if (parts.length == 2) {
+				if(parts.length == 2)
+				{
 					fields.put(
 							currentClassA + ":" + parts[0],
 							currentClassB + ":" + fieldNames.getOrDefault(parts[1], parts[1])
 					);
-				} else if (parts.length == 3) {
+				} else if(parts.length == 3)
+				{
 					methods.put(
 							currentClassA + ":" + parts[0] + parts[1],
 							currentClassB + ":" + methodNames.getOrDefault(parts[2], parts[2]) + parts[1]
@@ -48,19 +59,23 @@ public class ForgeUtils extends CommonUtils
 			}
 
 			s.close();
-		} catch(IOException e) {
-			e.printStackTrace();
+			Mappings mappings = new Mappings();
+			mappings.classes.putAll(classes);
+			mappings.fields.putAll(fields);
+			methods.forEach((a, b) -> mappings.methods.put(a, remapMethodDescriptor(b, classes)));
+			return mappings;
 		}
-
-		Mappings mappings = new Mappings();
-		mappings.classes.putAll(classes);
-		mappings.fields.putAll(fields);
-		methods.forEach((a, b) -> mappings.methods.put(a, remapMethodDescriptor(b, classes)));
-		return mappings;
+		catch(IOException e)
+		{
+			forge_logger.logError(e.getMessage());
+		}
+		return null;
 	}
 
-	public static Map<String, String> readCsv(BufferedReader s) throws IOException {
-		Main.forge_logger.log("reading csv mapping");
+	private static Map<String, String> readCsv(File file, String csv) throws IOException
+	{
+		BufferedReader s = FileHandler.getReader(FileHandler.extract(file, csv));
+		forge_logger.log("reading csv mapping");
 		Map<String, String> mappings = new LinkedHashMap<>();
 
 		String string;
