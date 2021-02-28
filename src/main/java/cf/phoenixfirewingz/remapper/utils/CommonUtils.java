@@ -37,7 +37,7 @@ public class CommonUtils
 					started = true;
 				}
 
-				//qouteall changed
+				//quote all changed
 				if (started && c == 'L' && !insideClassName) {
 					insideClassName = true;
 					className.setLength(0);

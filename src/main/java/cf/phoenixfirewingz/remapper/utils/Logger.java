@@ -14,11 +14,6 @@ public class Logger
 		System.out.println(name.toUpperCase() + ":" + s);
 	}
 
-	public void logDebug(String s)
-	{
-		System.err.println(name.toUpperCase() + ":DEBUG! -> " + s);
-	}
-
 	public void logError(String s)
 	{
 		System.err.println(name.toUpperCase() + ":ERROR! -> " + s);

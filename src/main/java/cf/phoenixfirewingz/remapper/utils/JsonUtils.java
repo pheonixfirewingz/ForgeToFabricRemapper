@@ -1,8 +1,10 @@
 package cf.phoenixfirewingz.remapper.utils;
 
-import cf.phoenixfirewingz.remapper.common.*;
+import cf.phoenixfirewingz.remapper.common.Config;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
+
+import java.util.Objects;
 
 public class JsonUtils
 {
@@ -18,7 +20,7 @@ public class JsonUtils
 		Config config = null;
 		try
 		{
-			config = gson.fromJson(new JsonReader(FileHandler.getReader(true,new ResourceLocation("Config.json").getPath())), Config.class);
+			config = gson.fromJson(new JsonReader(Objects.requireNonNull(FileHandler.getReader(new ResourceLocation("Config.json")))), Config.class);
 		}
 		catch(Exception exception)
 		{

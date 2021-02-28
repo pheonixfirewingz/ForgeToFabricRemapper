@@ -1,17 +1,36 @@
-package cf.phoenixfirewingz.remapper;
+package cf.phoenixfirewingz.remapper.common;
 
-import cf.phoenixfirewingz.remapper.common.*;
 import cf.phoenixfirewingz.remapper.utils.StringTuple;
 
-public class Constansts
+public class Constants
 {
-	public final Mappings mappings;
+	public final StringMapping mappings;
 	public final ChangeMapping changeMapping;
 
-	public Constansts(Mappings mappings)
+	public Constants(Mappings mappings_raw)
 	{
-		this.mappings = mappings;
-		changeMapping = new ChangeMapping(mappings);
+		mappings = new StringMapping(mappings_raw);
+		changeMapping = new ChangeMapping(mappings_raw);
+	}
+
+	public String mapToImportsFabric(String line)
+	{
+		for(StringTuple s:mappings.getNames())
+		{
+			if(line.equals(s.getForge()))
+				return "import " + s.getFabric() + ";";
+		}
+		return line;
+	}
+
+	public String mapToImportsForge(String line)
+	{
+		for(StringTuple s:mappings.getNames())
+		{
+			if(line.contains(s.getForge()))
+				return "import " + s.getFabric() + ";";
+		}
+		return line;
 	}
 
 	public String mapToFabric(String line)

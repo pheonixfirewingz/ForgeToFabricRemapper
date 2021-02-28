@@ -11,6 +11,17 @@ public class Mappings {
 	public final Map<String, String> fields = new LinkedHashMap<>();
 	public final Map<String, String> methods = new LinkedHashMap<>();
 
+
+
+	public Mappings() {}
+
+	public Mappings(CashedMapping mapping)
+	{
+		mapping.classes.forEach((s) -> classes.put(s.getForge(),s.getFabric()));
+		mapping.fields.forEach((s) -> fields.put(s.getForge(),s.getFabric()));
+		mapping.methods.forEach((s) -> methods.put(s.getForge(),s.getFabric()));
+	}
+
 	public Mappings chain(Mappings other, boolean defaultIfMissing) {
 		Mappings result = new Mappings();
 
@@ -45,7 +56,6 @@ public class Mappings {
 				}
 			});
 		}
-
 
 		return result;
 	}
